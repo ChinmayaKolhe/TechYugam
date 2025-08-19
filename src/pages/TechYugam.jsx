@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Users, BookOpen, Award, Mail, Phone, MapPin, ArrowRight, CheckCircle, Star, Send } from 'lucide-react';
+import { Menu, X, Code, Users, BookOpen, Award, Mail, Phone, MapPin, ArrowRight, CheckCircle, Star, Send, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const TechYugam = () => {
@@ -17,7 +17,7 @@ const TechYugam = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init('xfmDsPNAZUnb1BXU5'); // Replace with your actual EmailJS user ID
+    emailjs.init('xfmDsPNAZUnb1BXU5');
   }, []);
 
   const handleInputChange = (e) => {
@@ -32,10 +32,9 @@ const TechYugam = () => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
       await emailjs.send(
-        'service_03cecef', // Replace with your service ID
-        'template_xprxfd9', // Replace with your template ID
+        'service_03cecef',
+        'template_xprxfd9',
         {
           to_email: 'techyugamforge@gmail.com',
           from_name: formData.name,
@@ -46,10 +45,8 @@ const TechYugam = () => {
         }
       );
 
-      // Show success modal
       setShowSuccessModal(true);
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -58,7 +55,6 @@ const TechYugam = () => {
         message: ''
       });
 
-      // Hide modal after 5 seconds
       setTimeout(() => {
         setShowSuccessModal(false);
       }, 5000);
@@ -123,6 +119,30 @@ const TechYugam = () => {
       course: "PCCOE,Pune",
       rating: 4,
       text: "The team's technical expertise is outstanding. They not only delivered a working project but also taught me the concepts behind it."
+    }
+  ];
+
+  // Social media links
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/techyugamforge/",
+      icon: <Linkedin className="w-5 h-5" />
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/techyugamforge?igsh=MTg5NW5janZvd2t4cA==",
+      icon: <Instagram className="w-5 h-5" />
+    },
+    {
+      name: "Twitter",
+      url: "https://x.com/techyugamforge/status/1957140164612112712?t=YlXPZJrzGWAPWBQEnZzh9w&s=08",
+      icon: <Twitter className="w-5 h-5" />
+    },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/share/16yRDBH1LZ/",
+      icon: <Facebook className="w-5 h-5" />
     }
   ];
 
@@ -221,6 +241,25 @@ const TechYugam = () => {
               >
                 Explore Services
               </a>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="mt-12 animate-fadeIn delay-300">
+              <p className="text-gray-600 mb-4">Follow us on social media</p>
+              <div className="flex justify-center space-x-6">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white p-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-50 text-blue-600"
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -537,6 +576,23 @@ const TechYugam = () => {
                 Empowering college students with ready-to-submit academic projects. 
                 From ideation to execution, we handle the technical complexities.
               </p>
+              
+              {/* Social Media Links in Footer */}
+              <div className="flex space-x-4 mb-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition-colors duration-200 text-white"
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+              
               <p className="text-gray-400">
                 © 2025 TechYugam. All rights reserved.
               </p>
